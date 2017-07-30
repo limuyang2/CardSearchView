@@ -127,6 +127,13 @@ public class SearchView extends LinearLayout {
                     onHistoryItemClickListener.onClick(adapter.getData().get(position).toString(), position);
             }
         });
+
+        clearSearch.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                etSearch.setText("");
+            }
+        });
     }
 
     /***
@@ -197,7 +204,8 @@ public class SearchView extends LinearLayout {
      * 显示搜索框
      */
     public void open() {
-        SearchViewUtils.open(context, cardViewSearch, etSearch);
+        SearchViewUtils.open(context, cardViewSearch);
+        switchCleanHistoryDisplay();
     }
 
     /***
@@ -225,6 +233,7 @@ public class SearchView extends LinearLayout {
                 break;
             case 1:
                 cardViewSearch.setVisibility(VISIBLE);
+                switchCleanHistoryDisplay();
                 break;
         }
     }
