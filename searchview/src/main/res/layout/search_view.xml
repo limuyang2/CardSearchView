@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/cardView_search"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="4dp"
+    android:visibility="visible"
+    app:cardBackgroundColor="@android:color/white"
+    app:cardCornerRadius="2dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/search_layout"
+            android:layout_width="match_parent"
+            android:layout_height="48dp">
+
+            <ImageView
+                android:id="@+id/iv_search_back"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="12dp"
+                android:src="@drawable/ic_arrow_back_black_24dp"
+                 />
+
+            <EditText
+                android:id="@+id/et_search"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#fff"
+                android:gravity="center_vertical"
+                android:hint="请输入内容"
+                android:imeOptions="actionSearch"
+                android:inputType="textCapWords"
+                android:paddingLeft="12dp"
+                android:paddingRight="8dp"
+                android:singleLine="true" />
+
+            <ImageView
+                android:id="@+id/clearSearch"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="?android:attr/selectableItemBackground"
+                android:clickable="true"
+                android:padding="12dp"
+                android:src="@drawable/ic_crop_free_black_24dp"
+                 />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/clearHistory"
+            android:layout_below="@id/search_layout"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:textSize="13sp"
+            android:textColor="@android:color/darker_gray"
+            android:text="清除历史记录"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/clearHistory"
+            android:divider="@android:color/white" />
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
