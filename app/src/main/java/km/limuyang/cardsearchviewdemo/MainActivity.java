@@ -42,11 +42,11 @@ public class MainActivity extends AppCompatActivity {
         //设置全新的历史记录列表
         searchView.setNewHistoryList(historyList);
 
-        //添加一条历史纪录
+        //添加一条历史记录
         searchView.addOneHistory("Jenson");
 
 
-        //设置历史纪录点击事件
+        //设置历史记录点击事件
         searchView.setHistoryItemClickListener(new SearchView.OnHistoryItemClickListener() {
             @Override
             public void onClick(String historyStr, int position) {
