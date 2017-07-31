@@ -5,8 +5,7 @@
     tools:context=".MainActivity">
     <item
         android:id="@+id/action_search"
-
-
+        android:icon="@android:drawable/ic_menu_search"
         android:tint="@android:color/white"
         android:title="搜索"
         app:showAsAction="always"/>

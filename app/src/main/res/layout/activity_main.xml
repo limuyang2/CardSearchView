@@ -20,8 +20,8 @@
         android:id="@+id/searchView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        SearchView:defaultState="open"
-        SearchView:hintText="nihao" />
+        SearchView:defaultState="close"
+        SearchView:hintText="input name" />
 
 
 </RelativeLayout>
