@@ -20,7 +20,7 @@ allprojects {
 再在dependencies添加:
 ```gradle
 dependencies {
-	        compile 'com.github.limuyang2:CardSearchView:1.0.1'
+	        compile 'com.github.limuyang2:CardSearchView:1.0.2'
 	}
 ```
 ## 使用
@@ -57,7 +57,7 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 |setBackIcon|int|返回按钮图标|
 |setOneKeyCleanIcon|int|一键清除图标|
 |setHistoryIcon|int|历史纪录左侧图标|
-|defaultState|int|控件初始状态是否处于打开状态（默认“close”） 0：关闭；1：打开
+|defaultState|int|控件初始状态是否处于打开状态（默认“close”） SearchView.CLOSE：关闭；SearchView.OPEN：打开
 |setHistoryTextColor|int|历史纪录文字颜色|
 |open||打开SearchView|
 |close||关闭SearchView|
