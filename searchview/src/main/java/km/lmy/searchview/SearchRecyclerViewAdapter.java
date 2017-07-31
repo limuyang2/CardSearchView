@@ -14,6 +14,8 @@ import java.util.List;
 public class SearchRecyclerViewAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
     private int historyIcon;
 
+    private int historyTextColor;
+
     public SearchRecyclerViewAdapter(List<String> list) {
         super(R.layout.view_rv_item, list);
     }
@@ -21,11 +23,16 @@ public class SearchRecyclerViewAdapter extends BaseQuickAdapter<String, BaseView
     @Override
     protected void convert(BaseViewHolder helper, String item) {
         helper.setText(R.id.tv_history_item, item);
+        helper.setTextColor(R.id.tv_history_item, historyTextColor);
         ImageView iconImageView = helper.getView(R.id.right_icon);
         iconImageView.setImageResource(historyIcon);
     }
 
     public void setHistoryIcon(int historyIcon) {
         this.historyIcon = historyIcon;
+    }
+
+    public void setHistoryTextColor(int historyTextColor) {
+        this.historyTextColor = historyTextColor;
     }
 }

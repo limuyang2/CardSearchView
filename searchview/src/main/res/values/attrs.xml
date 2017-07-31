@@ -3,12 +3,13 @@
     <declare-styleable name="SearchView">
         <attr name="hintText" format="string"/>
         <attr name="backIcon" format="reference"/>
-        <attr name="cleanIcon" format="reference"/>
+        <attr name="oneKeyCleanIcon" format="reference"/>
         <attr name="historyIcon" format="reference"/>
         <attr name="defaultState" format="enum">
             <enum name="close" value="0"/>
             <enum name="open" value="1"/>
         </attr>
+        <attr name="historyTextColor" format="color"/>
 
     </declare-styleable>
 </resources>

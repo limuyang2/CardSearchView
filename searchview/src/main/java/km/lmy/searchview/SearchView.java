@@ -2,13 +2,20 @@ package km.lmy.searchview;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.OrientationHelper;
 import android.support.v7.widget.RecyclerView;
+import android.text.Editable;
+import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.util.AttributeSet;
+import android.view.KeyEvent;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -33,11 +40,13 @@ public class SearchView extends LinearLayout {
 
     private int backIcon = R.drawable.ic_arrow_back_black_24dp;
 
-    private int cleanIcon = R.drawable.ic_crop_free_black_24dp;
+    private int cleanIcon = R.drawable.ic_clean_input;
 
     private int historyIcon = R.drawable.ic_history_black_24dp;
 
     private int defaultState;
+
+    private int historyTextColor = android.R.color.darker_gray;
 
 
     ImageView ivSearchBack;
@@ -45,8 +54,6 @@ public class SearchView extends LinearLayout {
     EditText etSearch;
 
     ImageView clearSearch;
-
-    LinearLayout searchLayout;
 
     RecyclerView recyclerView;
 
@@ -60,6 +67,10 @@ public class SearchView extends LinearLayout {
     private SearchRecyclerViewAdapter adapter;
 
     private OnHistoryItemClickListener onHistoryItemClickListener;
+
+    private OnSearchActionListener onSearchActionListener;
+
+    private OnInputTextChangeListener inputTextChangeListener;
 
     private List<String> historyList = new ArrayList<>();
 
@@ -76,7 +87,7 @@ public class SearchView extends LinearLayout {
         this.context = context;
         findView(context);
         initView(context);
-        getCustomStyle(context, attrs);
+        getCustomStyle(attrs);
 
     }
 
@@ -105,17 +116,12 @@ public class SearchView extends LinearLayout {
         cleanHistory.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-//                historyList.clear();
-//                setNewHistoryList(historyList);
                 adapter.getData().clear();
                 switchCleanHistoryDisplay();
-//                addOneHistory("test");
             }
         });
 
         adapter = new SearchRecyclerViewAdapter(historyList);
-//        adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
-
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context);
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
@@ -134,6 +140,38 @@ public class SearchView extends LinearLayout {
                 etSearch.setText("");
             }
         });
+        etSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                if (inputTextChangeListener != null)
+                    inputTextChangeListener.beforeTextChanged(charSequence);
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                switchOneKeyCleanIconDisplay(charSequence);
+                if (inputTextChangeListener != null)
+                    inputTextChangeListener.onTextChanged(charSequence);
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                if (inputTextChangeListener != null)
+                    inputTextChangeListener.afterTextChanged(editable);
+            }
+        });
+        etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+            @Override
+            public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
+                if (i == EditorInfo.IME_ACTION_SEARCH) {
+                    System.out.println("search action: " + textView.getText().toString());
+                    if (onSearchActionListener != null)
+                        onSearchActionListener.onSearchAction(textView.getText().toString());
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 
     /***
@@ -147,20 +185,31 @@ public class SearchView extends LinearLayout {
         }
     }
 
+    /***
+     * 设置“一键清除输入”图标的显示隐藏
+     */
+    private void switchOneKeyCleanIconDisplay(CharSequence charSequence) {
+        if (TextUtils.isEmpty(charSequence) && clearSearch.getVisibility() == VISIBLE) {
+            clearSearch.setVisibility(GONE);
+        } else {
+            clearSearch.setVisibility(VISIBLE);
+        }
+    }
+
     /**
      * 初始化自定义属性
      *
-     * @param context
      * @param attrs
      */
-    public void getCustomStyle(Context context, AttributeSet attrs) {
+    public void getCustomStyle(AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SearchView);
 
         hintText = a.getString(R.styleable.SearchView_hintText);
         backIcon = a.getResourceId(R.styleable.SearchView_backIcon, backIcon);
         defaultState = a.getInt(R.styleable.SearchView_defaultState, 0);
-        cleanIcon = a.getResourceId(R.styleable.SearchView_cleanIcon, cleanIcon);
+        cleanIcon = a.getResourceId(R.styleable.SearchView_oneKeyCleanIcon, cleanIcon);
         historyIcon = a.getResourceId(R.styleable.SearchView_historyIcon, historyIcon);
+        historyTextColor = a.getColor(R.styleable.SearchView_historyTextColor, ContextCompat.getColor(context, historyTextColor));
 
 
         setHintText(hintText);
@@ -168,6 +217,7 @@ public class SearchView extends LinearLayout {
         defaultState(defaultState);
         setCleanIcon(cleanIcon);
         setHistoryIcon(historyIcon);
+        setHistoryTextColor(historyTextColor);
         a.recycle();
     }
 
@@ -199,6 +249,13 @@ public class SearchView extends LinearLayout {
         adapter.setHistoryIcon(historyIcon);
     }
 
+    /***
+     * 设置搜索历史文本颜色
+     * @param color
+     */
+    public void setHistoryTextColor(@ColorInt int color) {
+        adapter.setHistoryIcon(color);
+    }
 
     /***
      * 显示搜索框
@@ -277,11 +334,43 @@ public class SearchView extends LinearLayout {
         else return false;
     }
 
+    /***
+     * 设置历史纪录点击事件
+     * @param onHistoryItemClickListener
+     */
     public void setHistoryItemClickListener(OnHistoryItemClickListener onHistoryItemClickListener) {
         this.onHistoryItemClickListener = onHistoryItemClickListener;
     }
 
+    /***
+     * 设置软键盘搜索按钮点击事件
+     * @param onSearchActionListener
+     */
+    public void setOnSearchActionListener(OnSearchActionListener onSearchActionListener) {
+        this.onSearchActionListener = onSearchActionListener;
+    }
+
+    /***
+     * 设置输入文本监听事件
+     * @param onInputTextChangeListener
+     */
+    public void setOnInputTextChangeListener(OnInputTextChangeListener onInputTextChangeListener) {
+        this.inputTextChangeListener = onInputTextChangeListener;
+    }
+
     public interface OnHistoryItemClickListener {
         void onClick(String historyStr, int position);
+    }
+
+    public interface OnSearchActionListener {
+        void onSearchAction(String searchText);
+    }
+
+    public interface OnInputTextChangeListener {
+        void onTextChanged(CharSequence charSequence);
+
+        void beforeTextChanged(CharSequence charSequence);
+
+        void afterTextChanged(Editable editable);
     }
 }

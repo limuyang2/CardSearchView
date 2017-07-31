@@ -52,7 +52,7 @@
                 android:background="?android:attr/selectableItemBackground"
                 android:clickable="true"
                 android:padding="12dp"
-                android:src="@drawable/ic_crop_free_black_24dp"
+                android:src="@drawable/ic_clean_input"
                  />
         </LinearLayout>
 
