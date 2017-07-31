@@ -4,6 +4,7 @@
     在此，感谢原作者
 
 ## 预览
+![](https://github.com/limuyang2/CardSearchView/blob/master/appPreview/1.png)
 ![](https://github.com/limuyang2/CardSearchView/blob/master/appPreview/GIF.gif)
 
 ## 获取
@@ -57,7 +58,7 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 |setBackIcon|int|返回按钮图标|
 |setOneKeyCleanIcon|int|一键清除图标|
 |setHistoryIcon|int|历史纪录左侧图标|
-|defaultState|int|控件初始状态是否处于打开状态（默认“close”） SearchView.CLOSE：关闭；SearchView.OPEN：打开
+|defaultState|int|控件初始状态是否处于打开状态（默认关闭） SearchView.CLOSE：关闭；SearchView.OPEN：打开
 |setHistoryTextColor|int|历史纪录文字颜色|
 |open||打开SearchView|
 |close||关闭SearchView|
