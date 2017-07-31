@@ -215,7 +215,7 @@ public class SearchView extends LinearLayout {
         setHintText(hintText);
         setBackIcon(backIcon);
         defaultState(defaultState);
-        setCleanIcon(cleanIcon);
+        setOneKeyCleanIcon(cleanIcon);
         setHistoryIcon(historyIcon);
         setHistoryTextColor(historyTextColor);
         a.recycle();
@@ -241,7 +241,7 @@ public class SearchView extends LinearLayout {
      * 设置清空按钮图标
      * @param icon
      */
-    public void setCleanIcon(@DrawableRes int icon) {
+    public void setOneKeyCleanIcon(@DrawableRes int icon) {
         clearSearch.setImageResource(icon);
     }
 
