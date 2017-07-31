@@ -163,10 +163,8 @@ public class SearchView extends LinearLayout {
         etSearch.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
-                if (i == EditorInfo.IME_ACTION_SEARCH) {
-                    System.out.println("search action: " + textView.getText().toString());
-                    if (onSearchActionListener != null)
-                        onSearchActionListener.onSearchAction(textView.getText().toString());
+                if (i == EditorInfo.IME_ACTION_SEARCH && onSearchActionListener != null) {
+                    onSearchActionListener.onSearchAction(textView.getText().toString());
                     return true;
                 }
                 return false;
@@ -189,7 +187,7 @@ public class SearchView extends LinearLayout {
      * 设置“一键清除输入”图标的显示隐藏
      */
     private void switchOneKeyCleanIconDisplay(CharSequence charSequence) {
-        if (TextUtils.isEmpty(charSequence) && clearSearch.getVisibility() == VISIBLE) {
+        if (TextUtils.isEmpty(charSequence)) {
             clearSearch.setVisibility(GONE);
         } else {
             clearSearch.setVisibility(VISIBLE);
@@ -254,7 +252,7 @@ public class SearchView extends LinearLayout {
      * @param color
      */
     public void setHistoryTextColor(@ColorInt int color) {
-        adapter.setHistoryIcon(color);
+        adapter.setHistoryTextColor(color);
     }
 
     /***
@@ -263,6 +261,7 @@ public class SearchView extends LinearLayout {
     public void open() {
         SearchViewUtils.open(context, cardViewSearch);
         switchCleanHistoryDisplay();
+        switchOneKeyCleanIconDisplay("");
     }
 
     /***
@@ -290,9 +289,12 @@ public class SearchView extends LinearLayout {
                 break;
             case 1:
                 cardViewSearch.setVisibility(VISIBLE);
-                switchCleanHistoryDisplay();
+//                switchCleanHistoryDisplay();
+//                switchOneKeyCleanIconDisplay("");
                 break;
         }
+        switchCleanHistoryDisplay();
+        switchOneKeyCleanIconDisplay("");
     }
 
     /***
