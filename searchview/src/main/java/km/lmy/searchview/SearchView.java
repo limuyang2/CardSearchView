@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.IntDef;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,6 +24,9 @@ import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 
+import java.lang.annotation.Documented;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +38,15 @@ import butterknife.ButterKnife;
  */
 
 public class SearchView extends LinearLayout {
+    public static final int CLOSE = 0;
+    public static final int OPEN = 1;
+
+    @Documented
+    @Retention(RetentionPolicy.SOURCE)
+    @IntDef({CLOSE, OPEN})
+    public @interface State {
+    }
+
     private Context context;
 
     private String hintText = "";
@@ -204,7 +217,7 @@ public class SearchView extends LinearLayout {
 
         hintText = a.getString(R.styleable.SearchView_hintText);
         backIcon = a.getResourceId(R.styleable.SearchView_backIcon, backIcon);
-        defaultState = a.getInt(R.styleable.SearchView_defaultState, 0);
+        defaultState = a.getInt(R.styleable.SearchView_defaultState, CLOSE);
         cleanIcon = a.getResourceId(R.styleable.SearchView_oneKeyCleanIcon, cleanIcon);
         historyIcon = a.getResourceId(R.styleable.SearchView_historyIcon, historyIcon);
         historyTextColor = a.getColor(R.styleable.SearchView_historyTextColor, ContextCompat.getColor(context, historyTextColor));
@@ -212,7 +225,7 @@ public class SearchView extends LinearLayout {
 
         setHintText(hintText);
         setBackIcon(backIcon);
-        defaultState(defaultState);
+        defaultState(defaultState == CLOSE ? CLOSE : OPEN);
         setOneKeyCleanIcon(cleanIcon);
         setHistoryIcon(historyIcon);
         setHistoryTextColor(historyTextColor);
@@ -282,15 +295,13 @@ public class SearchView extends LinearLayout {
      * 默认状态：显示或隐藏
      * @param state
      */
-    public void defaultState(int state) {
+    public void defaultState(@State int state) {
         switch (state) {
-            case 0:
+            case CLOSE:
                 cardViewSearch.setVisibility(INVISIBLE);
                 break;
-            case 1:
+            case OPEN:
                 cardViewSearch.setVisibility(VISIBLE);
-//                switchCleanHistoryDisplay();
-//                switchOneKeyCleanIconDisplay("");
                 break;
         }
         switchCleanHistoryDisplay();
