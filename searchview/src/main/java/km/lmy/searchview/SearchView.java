@@ -257,7 +257,7 @@ public class SearchView extends LinearLayout {
     }
 
     public void setHistoryIcon(@DrawableRes int icon) {
-        adapter.setHistoryIcon(historyIcon);
+        adapter.setHistoryIcon(icon);
     }
 
     /***
@@ -272,7 +272,7 @@ public class SearchView extends LinearLayout {
      * 显示搜索框
      */
     public void open() {
-        SearchViewUtils.open(context, cardViewSearch);
+        SearchViewUtils.open(context, cardViewSearch, etSearch);
         switchCleanHistoryDisplay();
         switchOneKeyCleanIconDisplay("");
     }
