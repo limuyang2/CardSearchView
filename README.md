@@ -125,7 +125,7 @@ android:elevation="5dp"
      android:elevation="5dp"
      android:id="@+id/searchView"
      android:layout_width="wrap_content"
-     android:layout_height="wrap_content">
+     android:layout_height="wrap_content"/>
 ```
 
 ## License
