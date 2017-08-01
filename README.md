@@ -21,7 +21,7 @@ allprojects {
 再在dependencies添加:
 ```gradle
 dependencies {
-	        compile 'com.github.limuyang2:CardSearchView:1.0.2'
+	        compile 'com.github.limuyang2:CardSearchView:1.0.3'
 	}
 ```
 ## 使用
@@ -78,6 +78,31 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 #### 示例参考
 [MainActivity.java](https://github.com/limuyang2/CardSearchView/blob/master/app/src/main/java/km/limuyang/cardsearchviewdemo/MainActivity.java)
 
+### 与ToolBar一起使用不显示？
+#### 原因
+如下布局所示，当在Toolbar外嵌套AppBarLayout后，会有好看的阴影效果，这是在Android5.0后新加入的Material Design效果，强调布局的层级性。由于AppBarLayout会提高布局的Z轴坐标，产生层级，因此，在ToolBar上的其他控件会因为层级低于AppBarLayout而导致被遮盖。
+```xml
+<android.support.design.widget.AppBarLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:fitsSystemWindows="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:titleTextColor="@android:color/white">
+
+    </android.support.v7.widget.Toolbar>
+
+</android.support.design.widget.AppBarLayout>
+```
+#### 解决办法如下
+只需要将SearchView的层级提高到和AppBarLayout一样即可。在SearchView的XML中加入下面一句话即可。
+```xml
+android:elevation="5dp"
+```
 
 ## License
 ```
