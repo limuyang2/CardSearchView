@@ -103,6 +103,30 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 ```xml
 android:elevation="5dp"
 ```
+#### 示例
+```xml
+<android.support.design.widget.AppBarLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="?attr/actionBarSize"
+    android:fitsSystemWindows="true">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/activity_toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:titleTextColor="@android:color/white">
+
+    </android.support.v7.widget.Toolbar>
+
+</android.support.design.widget.AppBarLayout>
+
+<km.lmy.searchview.SearchView
+     android:elevation="5dp"
+     android:id="@+id/searchView"
+     android:layout_width="wrap_content"
+     android:layout_height="wrap_content">
+```
 
 ## License
 ```
