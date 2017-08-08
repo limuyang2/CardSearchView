@@ -178,6 +178,7 @@ public class SearchView extends LinearLayout {
             public boolean onEditorAction(TextView textView, int i, KeyEvent keyEvent) {
                 if (i == EditorInfo.IME_ACTION_SEARCH && onSearchActionListener != null) {
                     onSearchActionListener.onSearchAction(textView.getText().toString());
+                    close();
                     return true;
                 }
                 return false;
