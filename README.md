@@ -1,5 +1,8 @@
 [![](https://jitpack.io/v/limuyang2/CardSearchView.svg)](https://jitpack.io/#limuyang2/CardSearchView)
+[TOC]
+
 # CardSearchView
+
 本项目是受[BilibiliSearchView](https://github.com/didixyy/BilibiliSearchView)的启发，因此想对其进行完善，打包成库，方便自己以后的使用，也方便大家的快速导入。
     在此，感谢原作者
 
@@ -78,7 +81,7 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 #### 示例参考
 [MainActivity.java](https://github.com/limuyang2/CardSearchView/blob/master/app/src/main/java/km/limuyang/cardsearchviewdemo/MainActivity.java)
 
-### 与ToolBar一起使用不显示？
+### *与ToolBar一起使用不显示？*
 #### 原因
 如下布局所示，当在Toolbar外嵌套AppBarLayout后，会有好看的阴影效果，这是在Android5.0后新加入的Material Design效果，强调布局的层级性。由于AppBarLayout会提高布局的Z轴坐标，产生层级，因此，在ToolBar上的其他控件会因为层级低于AppBarLayout而导致被遮盖。
 ```xml
