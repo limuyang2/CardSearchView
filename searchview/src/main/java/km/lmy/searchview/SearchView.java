@@ -262,6 +262,22 @@ public class SearchView extends LinearLayout {
         etSearch.setHint(hintText);
     }
 
+    /**
+     * 设置搜索框初始文本
+     * @param text
+     */
+    public void setSearchEditText(String text){
+        etSearch.setText(text);
+    }
+
+    /**
+     * 设置输入框打开或者关闭状态
+     * @param enabled
+     */
+    public void setSearchEditTextEnabled(boolean enabled){
+        etSearch.setEnabled(enabled);
+    }
+
     /***
      * 设置返回按钮图标
      * @param icon
