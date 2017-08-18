@@ -24,7 +24,7 @@ allprojects {
 再在dependencies添加:
 ```gradle
 dependencies {
-	compile 'com.github.limuyang2:CardSearchView:1.0.6.1'
+	compile 'com.github.limuyang2:CardSearchView:1.0.6.2'
 }
 ```
 ## 使用
@@ -67,7 +67,9 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 | close               |        | 关闭SearchView                             |
 | autoOpenOrClose     |        | 自动打开关闭SearchView                         |
 | isOpen              |        | 搜索框是否打开                                  |
-| setOneKeyCleanIsVisible              |        | 设置一键清除按钮是否显示（true:显示；false:不现实(默认为true)）                                  |
+| setOneKeyCleanIsVisible              |   boolean     | 设置一键清除按钮是否显示（true:显示；false:不现实(默认为true)）                                  |
+| setSearchEditText              |    String    | 设置搜索框初始文本                                  |
+| setSearchEditTextEnabled              |   boolean     | 设置输入框处于是否可编辑状态                                  |
 
 ### Java方法使用说明
 | 使用方法                         | 传入数据类型                     | 说明            |
