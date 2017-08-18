@@ -61,6 +61,8 @@ public class SearchView extends LinearLayout {
 
     private int historyTextColor = android.R.color.darker_gray;
 
+    private boolean isOnKeyCleanVisible = true;
+
 
     ImageView ivSearchBack;
 
@@ -207,10 +209,10 @@ public class SearchView extends LinearLayout {
      * 设置“一键清除输入”图标的显示隐藏
      */
     private void switchOneKeyCleanIconDisplay(CharSequence charSequence) {
-        if (TextUtils.isEmpty(charSequence)) {
-            clearSearch.setVisibility(GONE);
-        } else {
+        if (isOnKeyCleanVisible && !TextUtils.isEmpty(charSequence)) {
             clearSearch.setVisibility(VISIBLE);
+        } else {
+            clearSearch.setVisibility(GONE);
         }
     }
 
@@ -237,6 +239,19 @@ public class SearchView extends LinearLayout {
         setHistoryIcon(historyIcon);
         setHistoryTextColor(historyTextColor);
         a.recycle();
+    }
+
+    /**
+     * 设置一键清除是否显示
+     * @param visible
+     */
+    public void setOneKeyCleanIsVisible(boolean visible) {
+        isOnKeyCleanVisible = visible;
+//        if (visible) {
+//            clearSearch.setVisibility(VISIBLE);
+//        } else {
+//            clearSearch.setVisibility(GONE);
+//        }
     }
 
     /***
@@ -349,9 +364,7 @@ public class SearchView extends LinearLayout {
      * @return
      */
     public boolean isOpen() {
-        if (cardViewSearch.getVisibility() == VISIBLE)
-            return true;
-        else return false;
+        return cardViewSearch.getVisibility() == VISIBLE;
     }
 
     /***
