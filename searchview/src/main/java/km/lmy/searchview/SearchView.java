@@ -85,6 +85,8 @@ public class SearchView extends LinearLayout {
 
     private OnInputTextChangeListener inputTextChangeListener;
 
+    private OnSearchBackIconClickListener onSearchBackIconClickListener;
+
     private List<String> historyList = new ArrayList<>();
 
     public SearchView(Context context) {
@@ -122,7 +124,11 @@ public class SearchView extends LinearLayout {
         ivSearchBack.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                SearchViewUtils.close(context, cardViewSearch, etSearch);
+                if (onSearchBackIconClickListener != null) {
+                    KeyboardUtils.hideSoftInput(etSearch, context);
+                    onSearchBackIconClickListener.onClick(view);
+                } else
+                    close();
             }
         });
 
@@ -372,6 +378,10 @@ public class SearchView extends LinearLayout {
         this.inputTextChangeListener = onInputTextChangeListener;
     }
 
+    public void setOnSearchBackIconClickListener(OnSearchBackIconClickListener onSearchBackIconClickListener) {
+        this.onSearchBackIconClickListener = onSearchBackIconClickListener;
+    }
+
     public interface OnHistoryItemClickListener {
         void onClick(String historyStr, int position);
     }
@@ -386,5 +396,9 @@ public class SearchView extends LinearLayout {
         void beforeTextChanged(CharSequence charSequence);
 
         void afterTextChanged(Editable editable);
+    }
+
+    public interface OnSearchBackIconClickListener {
+        void onClick(View view);
     }
 }
