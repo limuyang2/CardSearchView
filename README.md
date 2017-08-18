@@ -24,7 +24,7 @@ allprojects {
 再在dependencies添加:
 ```gradle
 dependencies {
-	compile 'com.github.limuyang2:CardSearchView:1.0.5'
+	compile 'com.github.limuyang2:CardSearchView:1.0.6'
 }
 ```
 ## 使用
@@ -77,6 +77,7 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 | setHistoryItemClickListener  | OnHistoryItemClickListener | 设置历史纪录点击事件    |
 | setOnSearchActionListener    | OnSearchActionListener     | 设置软键盘搜索按钮点击事件 |
 | setOnInputTextChangeListener | OnInputTextChangeListener  | 设置输入文本监听事件    |
+| setOnSearchBackIconClickListener | OnSearchBackIconClickListener  | 自定义返回按钮点击监听事件（默认为关闭搜索框） |
 
 #### 示例参考
 [MainActivity.java](https://github.com/limuyang2/CardSearchView/blob/master/app/src/main/java/km/limuyang/cardsearchviewdemo/MainActivity.java)
