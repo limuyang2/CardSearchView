@@ -89,6 +89,8 @@ public class SearchView extends LinearLayout {
 
     private OnSearchBackIconClickListener onSearchBackIconClickListener;
 
+    private OnCleanHistoryClickListener onCleanHistoryClickListener;
+
     private List<String> historyList = new ArrayList<>();
 
     public SearchView(Context context) {
@@ -139,6 +141,8 @@ public class SearchView extends LinearLayout {
             public void onClick(View view) {
                 adapter.getData().clear();
                 switchCleanHistoryDisplay();
+                if (onCleanHistoryClickListener != null)
+                    onCleanHistoryClickListener.onClick();
             }
         });
 
@@ -198,7 +202,7 @@ public class SearchView extends LinearLayout {
      * 设置“清除历史记录”的显示隐藏
      */
     private void switchCleanHistoryDisplay() {
-        if ((adapter.getData() == null || adapter.getData().size() == 0) && cleanHistory.getVisibility() == VISIBLE) {
+        if (adapter.getData() == null || adapter.getData().size() == 0) {
             cleanHistory.setVisibility(GONE);
         } else {
             cleanHistory.setVisibility(VISIBLE);
@@ -243,6 +247,7 @@ public class SearchView extends LinearLayout {
 
     /**
      * 设置一键清除是否显示
+     *
      * @param visible
      */
     public void setOneKeyCleanIsVisible(boolean visible) {
@@ -264,17 +269,19 @@ public class SearchView extends LinearLayout {
 
     /**
      * 设置搜索框初始文本
+     *
      * @param text
      */
-    public void setSearchEditText(String text){
+    public void setSearchEditText(String text) {
         etSearch.setText(text);
     }
 
     /**
      * 设置输入框打开或者关闭状态
+     *
      * @param enabled
      */
-    public void setSearchEditTextEnabled(boolean enabled){
+    public void setSearchEditTextEnabled(boolean enabled) {
         etSearch.setEnabled(enabled);
     }
 
@@ -411,6 +418,15 @@ public class SearchView extends LinearLayout {
         this.onSearchBackIconClickListener = onSearchBackIconClickListener;
     }
 
+    /**
+     * 设置清除历史点击监听
+     *
+     * @param onCleanHistoryClickListener
+     */
+    public void setOnCleanHistoryClickListener(OnCleanHistoryClickListener onCleanHistoryClickListener) {
+        this.onCleanHistoryClickListener = onCleanHistoryClickListener;
+    }
+
     public interface OnHistoryItemClickListener {
         void onClick(String historyStr, int position);
     }
@@ -429,5 +445,9 @@ public class SearchView extends LinearLayout {
 
     public interface OnSearchBackIconClickListener {
         void onClick(View view);
+    }
+
+    public interface OnCleanHistoryClickListener {
+        void onClick();
     }
 }
