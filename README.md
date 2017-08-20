@@ -24,7 +24,7 @@ allprojects {
 再在dependencies添加:
 ```gradle
 dependencies {
-	compile 'com.github.limuyang2:CardSearchView:1.0.6.2'
+	compile 'com.github.limuyang2:CardSearchView:1.0.6.3'
 }
 ```
 ## 使用
@@ -55,32 +55,33 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 | SearchView:historyTextColor | Color Int | 历史纪录文字颜色                                 |
 
 ### Java方法设置属性说明
-| 属性方法                | 传入数据类型 | 说明                                       |
-| ------------------- | ------ | ---------------------------------------- |
-| setHintText         | String | 输入框提示文本                                  |
-| setBackIcon         | int    | 返回按钮图标                                   |
-| setOneKeyCleanIcon  | int    | 一键清除图标                                   |
-| setHistoryIcon      | int    | 历史纪录左侧图标                                 |
-| defaultState        | int    | 控件初始状态是否处于打开状态（默认关闭） SearchView.CLOSE：关闭；SearchView.OPEN：打开 |
-| setHistoryTextColor | int    | 历史纪录文字颜色                                 |
-| open                |        | 打开SearchView                             |
-| close               |        | 关闭SearchView                             |
-| autoOpenOrClose     |        | 自动打开关闭SearchView                         |
-| isOpen              |        | 搜索框是否打开                                  |
-| setOneKeyCleanIsVisible              |   boolean     | 设置一键清除按钮是否显示（true:显示；false:不现实(默认为true)）                                  |
-| setSearchEditText              |    String    | 设置搜索框初始文本                                  |
-| setSearchEditTextEnabled              |   boolean     | 设置输入框处于是否可编辑状态                                  |
+| 属性方法                     | 传入数据类型  | 说明                                       |
+| ------------------------ | ------- | ---------------------------------------- |
+| setHintText              | String  | 输入框提示文本                                  |
+| setBackIcon              | int     | 返回按钮图标                                   |
+| setOneKeyCleanIcon       | int     | 一键清除图标                                   |
+| setHistoryIcon           | int     | 历史纪录左侧图标                                 |
+| defaultState             | int     | 控件初始状态是否处于打开状态（默认关闭） SearchView.CLOSE：关闭；SearchView.OPEN：打开 |
+| setHistoryTextColor      | int     | 历史纪录文字颜色                                 |
+| open                     |         | 打开SearchView                             |
+| close                    |         | 关闭SearchView                             |
+| autoOpenOrClose          |         | 自动打开关闭SearchView                         |
+| isOpen                   |         | 搜索框是否打开                                  |
+| setOneKeyCleanIsVisible  | boolean | 设置一键清除按钮是否显示（true:显示；false:不现实(默认为true)） |
+| setSearchEditText        | String  | 设置搜索框初始文本                                |
+| setSearchEditTextEnabled | boolean | 设置输入框处于是否可编辑状态                           |
 
 ### Java方法使用说明
-| 使用方法                         | 传入数据类型                     | 说明            |
-| ---------------------------- | -------------------------- | ------------- |
-| addOneHistory                | String                     | 添加一条历史纪录      |
-| addHistoryList               | List<String>               | 添加历史纪录列表      |
-| setNewHistoryList            | List<String>               | 设置全新的历史记录列表   |
-| setHistoryItemClickListener  | OnHistoryItemClickListener | 设置历史纪录点击事件    |
-| setOnSearchActionListener    | OnSearchActionListener     | 设置软键盘搜索按钮点击事件 |
-| setOnInputTextChangeListener | OnInputTextChangeListener  | 设置输入文本监听事件    |
-| setOnSearchBackIconClickListener | OnSearchBackIconClickListener  | 自定义返回按钮点击监听事件（默认为关闭搜索框） |
+| 使用方法                             | 传入数据类型                        | 说明                      |
+| -------------------------------- | ----------------------------- | ----------------------- |
+| addOneHistory                    | String                        | 添加一条历史纪录                |
+| addHistoryList                   | List<String>                  | 添加历史纪录列表                |
+| setNewHistoryList                | List<String>                  | 设置全新的历史记录列表             |
+| setHistoryItemClickListener      | OnHistoryItemClickListener    | 设置历史纪录点击事件              |
+| setOnSearchActionListener        | OnSearchActionListener        | 设置软键盘搜索按钮点击事件           |
+| setOnInputTextChangeListener     | OnInputTextChangeListener     | 设置输入文本监听事件              |
+| setOnSearchBackIconClickListener | OnSearchBackIconClickListener | 自定义返回按钮点击监听事件（默认为关闭搜索框） |
+| setOnCleanHistoryClickListener   | OnCleanHistoryClickListener   | 设置"清除历史"点击监听            |
 
 #### 示例参考
 [MainActivity.java](https://github.com/limuyang2/CardSearchView/blob/master/app/src/main/java/km/limuyang/cardsearchviewdemo/MainActivity.java)
