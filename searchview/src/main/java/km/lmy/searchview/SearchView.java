@@ -274,6 +274,14 @@ public class SearchView extends LinearLayout {
      */
     public void setSearchEditText(String text) {
         etSearch.setText(text);
+        etSearch.setSelection(text.length());
+    }
+
+    /**
+     * @return 获取搜索输入框
+     */
+    public EditText getEditTextView(){
+        return etSearch;
     }
 
     /**
