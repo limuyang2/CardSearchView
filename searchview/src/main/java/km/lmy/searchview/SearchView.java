@@ -30,8 +30,6 @@ import java.lang.annotation.RetentionPolicy;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.ButterKnife;
-
 /**
  * 自定义搜索框
  * Created by limuyang on 2017/7/29.
@@ -116,12 +114,12 @@ public class SearchView extends LinearLayout {
      */
     private void findView(Context context) {
         mView = View.inflate(context, R.layout.search_view, this);
-        ivSearchBack = ButterKnife.findById(mView, R.id.iv_search_back);
-        etSearch = ButterKnife.findById(mView, R.id.et_search);
-        clearSearch = ButterKnife.findById(mView, R.id.clearSearch);
-        recyclerView = ButterKnife.findById(mView, R.id.recyclerView);
-        cardViewSearch = ButterKnife.findById(mView, R.id.cardView_search);
-        cleanHistory = ButterKnife.findById(mView, R.id.clearHistory);
+        ivSearchBack = mView.findViewById(R.id.iv_search_back);
+        etSearch = mView.findViewById(R.id.et_search);
+        clearSearch = mView.findViewById(R.id.clearSearch);
+        recyclerView = mView.findViewById(R.id.recyclerView);
+        cardViewSearch = mView.findViewById(R.id.cardView_search);
+        cleanHistory = mView.findViewById(R.id.clearHistory);
     }
 
     private void initView(final Context context) {
@@ -280,7 +278,7 @@ public class SearchView extends LinearLayout {
     /**
      * @return 获取搜索输入框
      */
-    public EditText getEditTextView(){
+    public EditText getEditTextView() {
         return etSearch;
     }
 
