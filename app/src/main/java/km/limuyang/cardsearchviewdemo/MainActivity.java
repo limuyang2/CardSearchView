@@ -12,22 +12,20 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.List;
 
-import butterknife.BindView;
-import butterknife.ButterKnife;
 import km.lmy.searchview.SearchView;
 
 public class MainActivity extends AppCompatActivity {
 
-    @BindView(R.id.activity_toolbar)
     Toolbar activityToolbar;
-    @BindView(R.id.searchView)
     SearchView searchView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ButterKnife.bind(this);
+
+        activityToolbar=(Toolbar)findViewById(R.id.activity_toolbar);
+        searchView=(SearchView)findViewById(R.id.searchView);
 
         activityToolbar.setTitle(this.getTitle());
         activityToolbar.setTitleTextColor(Color.WHITE);
@@ -45,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
         //添加一条历史记录
         searchView.addOneHistory("Jenson");
 
+        //设置搜索框默认值
+        searchView.setSearchEditText("test string");
 
         //设置历史记录点击事件
         searchView.setHistoryItemClickListener(new SearchView.OnHistoryItemClickListener() {
