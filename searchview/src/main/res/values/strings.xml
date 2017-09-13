@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">SearchView</string>
+    <string name="clear_history">清除历史记录</string>
+    <string name="enter_content">请输入内容</string>
 </resources>
