@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.content.Context;
 import android.os.Build;
 import android.support.v7.widget.CardView;
+import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewAnimationUtils;
 import android.view.inputmethod.InputMethodManager;
@@ -70,7 +71,7 @@ public class SearchViewUtils {
     }
 
     public static void close(final Context context, final CardView search, final EditText editText) {
-        if (search.getVisibility() == View.VISIBLE)
+        if (search.getVisibility() == View.VISIBLE) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 final Animator animatorHide = ViewAnimationUtils.createCircularReveal(search,
                         search.getWidth() - dip2px(context, 23),
@@ -105,8 +106,10 @@ public class SearchViewUtils {
             } else {
                 search.setVisibility(View.INVISIBLE);
             }
-        editText.setText("");
-        search.setEnabled(false);
-        KeyboardUtils.hideSoftInput(editText, context);
+            if (!TextUtils.isEmpty(editText.getText().toString().trim()))
+                editText.setText("");
+            search.setEnabled(false);
+            KeyboardUtils.hideSoftInput(editText, context);
+        }
     }
 }
