@@ -10,6 +10,9 @@
 ![](https://github.com/limuyang2/CardSearchView/blob/master/appPreview/1.png)
 ![](https://github.com/limuyang2/CardSearchView/blob/master/appPreview/GIF.gif)
 
+##版本更新说明
+![版本更新说明](https://github.com/limuyang2/CardSearchView/releases)
+
 ## 获取
 先在 build.gradle 的 repositories 添加:
 ```gradle
@@ -24,7 +27,7 @@ allprojects {
 再在dependencies添加:
 ```gradle
 dependencies {
-	compile 'com.github.limuyang2:CardSearchView:1.0.6.8'
+	compile 'com.github.limuyang2:CardSearchView:1.0.6.9'
 }
 ```
 ## 使用
@@ -53,6 +56,7 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 | SearchView:historyIcon      | Drawable  | 历史纪录左侧图标                                 |
 | SearchView:defaultState     | enum      | 控件初始状态是否处于打开状态（默认“close”），值：“open”、“close” |
 | SearchView:historyTextColor | Color Int | 历史纪录文字颜色                                 |
+| SearchView:inputView_height | Int（dp） | 搜索输入框的高度                               |
 
 ### Java方法设置属性说明
 | 属性方法                     | 传入数据类型  | 说明                                       |
@@ -71,6 +75,7 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 | setSearchEditText        | String  | 设置搜索框初始文本                                |
 | setSearchEditTextEnabled | boolean | 设置输入框处于是否可编辑状态                           |
 | getEditTextView |  | 获取搜索输入框控件 |
+| setSearchInputViewHeight | int | 设置搜索输入框的高度 |
 
 ### Java方法使用说明
 | 使用方法                             | 传入数据类型                        | 说明                      |
