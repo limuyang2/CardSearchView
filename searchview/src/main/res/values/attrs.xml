@@ -10,6 +10,7 @@
             <enum name="open" value="1"/>
         </attr>
         <attr name="historyTextColor" format="color"/>
+        <attr name="inputView_height" format="dimension"/>
 
     </declare-styleable>
 </resources>

@@ -2,7 +2,6 @@
 <android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/cardView_search"
-
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
@@ -15,7 +14,7 @@
         android:layout_height="wrap_content">
 
         <LinearLayout
-            android:id="@+id/search_layout"
+            android:id="@+id/search_linearLayout"
             android:layout_width="match_parent"
             android:layout_height="48dp"
             android:orientation="horizontal">
@@ -68,7 +67,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_below="@id/search_layout"
+            android:layout_below="@id/search_linearLayout"
             android:layout_centerHorizontal="true"
             android:layout_marginRight="10dp"
             android:text="@string/clear_history"

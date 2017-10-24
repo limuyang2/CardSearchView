@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@drawable/recycler_touch_bg"
     android:layout_width="match_parent"
-    android:layout_height="50dp">
+    android:layout_height="40dp">
 
     <ImageView
         android:id="@+id/right_icon"

@@ -20,6 +20,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -61,6 +62,8 @@ public class SearchView extends LinearLayout {
 
     private boolean isOnKeyCleanVisible = true;
 
+    private int searchInputViewHeight;
+
 
     ImageView ivSearchBack;
 
@@ -73,6 +76,8 @@ public class SearchView extends LinearLayout {
     CardView cardViewSearch;
 
     TextView cleanHistory;
+
+    LinearLayout searchLinearLayout;
 
     /*整体根布局view*/
     private View mView;
@@ -120,6 +125,7 @@ public class SearchView extends LinearLayout {
         recyclerView = mView.findViewById(R.id.recyclerView);
         cardViewSearch = mView.findViewById(R.id.cardView_search);
         cleanHistory = mView.findViewById(R.id.clearHistory);
+        searchLinearLayout = mView.findViewById(R.id.search_linearLayout);
     }
 
     private void initView(final Context context) {
@@ -232,7 +238,7 @@ public class SearchView extends LinearLayout {
         cleanIcon = a.getResourceId(R.styleable.SearchView_oneKeyCleanIcon, cleanIcon);
         historyIcon = a.getResourceId(R.styleable.SearchView_historyIcon, historyIcon);
         historyTextColor = a.getColor(R.styleable.SearchView_historyTextColor, ContextCompat.getColor(context, historyTextColor));
-
+        searchInputViewHeight = a.getDimensionPixelSize(R.styleable.SearchView_inputView_height, -10);
 
         setHintText(hintText);
         setBackIcon(backIcon);
@@ -240,6 +246,8 @@ public class SearchView extends LinearLayout {
         setOneKeyCleanIcon(cleanIcon);
         setHistoryIcon(historyIcon);
         setHistoryTextColor(historyTextColor);
+        if (searchInputViewHeight != -10) setSearchInputViewHeight(searchInputViewHeight);
+
         a.recycle();
     }
 
@@ -250,11 +258,6 @@ public class SearchView extends LinearLayout {
      */
     public void setOneKeyCleanIsVisible(boolean visible) {
         isOnKeyCleanVisible = visible;
-//        if (visible) {
-//            clearSearch.setVisibility(VISIBLE);
-//        } else {
-//            clearSearch.setVisibility(GONE);
-//        }
     }
 
     /***
@@ -289,6 +292,16 @@ public class SearchView extends LinearLayout {
      */
     public void setSearchEditTextEnabled(boolean enabled) {
         etSearch.setEnabled(enabled);
+    }
+
+    /**
+     * 数值搜索输入框高度
+     * @param height
+     */
+    public void setSearchInputViewHeight(int height) {
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) searchLinearLayout.getLayoutParams();
+        params.height = height;
+        searchLinearLayout.setLayoutParams(params);
     }
 
     /***
