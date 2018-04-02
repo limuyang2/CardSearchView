@@ -27,7 +27,7 @@ allprojects {
 再在dependencies添加:
 ```gradle
 dependencies {
-	compile 'com.github.limuyang2:CardSearchView:1.0.6.9'
+	compile 'com.github.limuyang2:CardSearchView:1.0.7.0'
 }
 ```
 ## 使用
