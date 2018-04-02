@@ -11,7 +11,7 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 /**
- * Created by yuepeng on 2017/6/9.
+ * Created by limuyang on 2017/6/9.
  */
 
 public class SearchViewUtils {
@@ -29,10 +29,10 @@ public class SearchViewUtils {
         }
     }
 
-    public static void open(final Context context, final CardView search, EditText editText) {
-        if (search.getVisibility() == View.INVISIBLE)
+    public static void open(final Context context, final CardView search, final EditText editText) {
+        if (search.getVisibility() == View.INVISIBLE || search.getVisibility() == View.GONE)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                final Animator animator = ViewAnimationUtils.createCircularReveal(search,
+                Animator animator = ViewAnimationUtils.createCircularReveal(search,
                         search.getWidth() - dip2px(context, 23),
                         dip2px(context, 23),
                         0,
@@ -44,7 +44,7 @@ public class SearchViewUtils {
 
                     @Override
                     public void onAnimationEnd(Animator animation) {
-                        ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).toggleSoftInput(InputMethodManager.SHOW_FORCED, InputMethodManager.HIDE_IMPLICIT_ONLY);
+                        KeyboardUtils.showSoftInput(editText, context);
                     }
 
                     @Override
@@ -66,14 +66,14 @@ public class SearchViewUtils {
             } else {
                 search.setVisibility(View.VISIBLE);
                 search.setEnabled(true);
+                KeyboardUtils.showSoftInput(editText, context);
             }
-        KeyboardUtils.showSoftInput(editText, context);
     }
 
     public static void close(final Context context, final CardView search, final EditText editText) {
         if (search.getVisibility() == View.VISIBLE) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                final Animator animatorHide = ViewAnimationUtils.createCircularReveal(search,
+                Animator animatorHide = ViewAnimationUtils.createCircularReveal(search,
                         search.getWidth() - dip2px(context, 23),
                         dip2px(context, 23),
                         //确定元的半径（算长宽的斜边长，这样半径不会太短也不会很长效果比较舒服）
@@ -88,7 +88,7 @@ public class SearchViewUtils {
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         search.setVisibility(View.INVISIBLE);
-                        ((InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE)).hideSoftInputFromWindow(search.getWindowToken(), 0);
+                        KeyboardUtils.hideSoftInput(editText, context);
                     }
 
                     @Override
@@ -105,11 +105,11 @@ public class SearchViewUtils {
                 animatorHide.start();
             } else {
                 search.setVisibility(View.INVISIBLE);
+                KeyboardUtils.hideSoftInput(editText, context);
             }
             if (!TextUtils.isEmpty(editText.getText().toString().trim()))
                 editText.setText("");
             search.setEnabled(false);
-            KeyboardUtils.hideSoftInput(editText, context);
         }
     }
 }
