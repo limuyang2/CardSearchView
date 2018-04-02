@@ -16,7 +16,7 @@ public class SearchRecyclerViewAdapter extends BaseQuickAdapter<String, BaseView
 
     private int historyTextColor;
 
-    public SearchRecyclerViewAdapter(List<String> list) {
+    SearchRecyclerViewAdapter(List<String> list) {
         super(R.layout.view_rv_item, list);
     }
 

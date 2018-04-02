@@ -3,6 +3,7 @@ package km.lmy.searchview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.ColorInt;
+import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
 import android.support.v4.content.ContextCompat;
@@ -38,7 +39,7 @@ import java.util.List;
 
 public class SearchView extends LinearLayout {
     public static final int CLOSE = 0;
-    public static final int OPEN = 1;
+    public static final int OPEN  = 1;
 
     @Documented
     @Retention(RetentionPolicy.SOURCE)
@@ -48,51 +49,26 @@ public class SearchView extends LinearLayout {
 
     private Context context;
 
-    private String hintText = "";
-
-    private int backIcon = R.drawable.ic_arrow_back_black_24dp;
-
-    private int cleanIcon = R.drawable.ic_clean_input;
-
+    private int backIcon    = R.drawable.ic_arrow_back_black_24dp;
+    private int cleanIcon   = R.drawable.ic_clean_input;
     private int historyIcon = R.drawable.ic_history_black_24dp;
-
-    private int defaultState;
-
-    private int historyTextColor = android.R.color.darker_gray;
 
     private boolean isOnKeyCleanVisible = true;
 
-    private int searchInputViewHeight;
-
-
-    ImageView ivSearchBack;
-
-    EditText etSearch;
-
-    ImageView clearSearch;
-
-    RecyclerView recyclerView;
-
-    CardView cardViewSearch;
-
-    TextView cleanHistory;
-
-    LinearLayout searchLinearLayout;
-
-    /*整体根布局view*/
-    private View mView;
-
+    private ImageView                 ivSearchBack;
+    private EditText                  etSearch;
+    private ImageView                 clearSearch;
+    private RecyclerView              recyclerView;
+    private CardView                  cardViewSearch;
+    private TextView                  cleanHistory;
+    private LinearLayout              searchLinearLayout;
     private SearchRecyclerViewAdapter adapter;
 
-    private OnHistoryItemClickListener onHistoryItemClickListener;
-
-    private OnSearchActionListener onSearchActionListener;
-
-    private OnInputTextChangeListener inputTextChangeListener;
-
+    private OnHistoryItemClickListener    onHistoryItemClickListener;
+    private OnSearchActionListener        onSearchActionListener;
+    private OnInputTextChangeListener     inputTextChangeListener;
     private OnSearchBackIconClickListener onSearchBackIconClickListener;
-
-    private OnCleanHistoryClickListener onCleanHistoryClickListener;
+    private OnCleanHistoryClickListener   onCleanHistoryClickListener;
 
     private List<String> historyList = new ArrayList<>();
 
@@ -110,7 +86,6 @@ public class SearchView extends LinearLayout {
         findView(context);
         initView(context);
         getCustomStyle(attrs);
-
     }
 
     /***
@@ -118,7 +93,7 @@ public class SearchView extends LinearLayout {
      * @param context
      */
     private void findView(Context context) {
-        mView = View.inflate(context, R.layout.search_view, this);
+        View mView = View.inflate(context, R.layout.search_view, this);
         ivSearchBack = mView.findViewById(R.id.iv_search_back);
         etSearch = mView.findViewById(R.id.et_search);
         clearSearch = mView.findViewById(R.id.clearSearch);
@@ -206,7 +181,7 @@ public class SearchView extends LinearLayout {
      * 设置“清除历史记录”的显示隐藏
      */
     private void switchCleanHistoryDisplay() {
-        if (adapter.getData() == null || adapter.getData().size() == 0) {
+        if (adapter.getData().size() == 0) {
             cleanHistory.setVisibility(GONE);
         } else {
             cleanHistory.setVisibility(VISIBLE);
@@ -227,18 +202,17 @@ public class SearchView extends LinearLayout {
     /**
      * 初始化自定义属性
      *
-     * @param attrs
      */
     public void getCustomStyle(AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SearchView);
 
-        hintText = a.getString(R.styleable.SearchView_hintText);
+        String hintText = a.getString(R.styleable.SearchView_hintText);
         backIcon = a.getResourceId(R.styleable.SearchView_backIcon, backIcon);
-        defaultState = a.getInt(R.styleable.SearchView_defaultState, CLOSE);
+        int defaultState = a.getInt(R.styleable.SearchView_defaultState, CLOSE);
         cleanIcon = a.getResourceId(R.styleable.SearchView_oneKeyCleanIcon, cleanIcon);
         historyIcon = a.getResourceId(R.styleable.SearchView_historyIcon, historyIcon);
-        historyTextColor = a.getColor(R.styleable.SearchView_historyTextColor, ContextCompat.getColor(context, historyTextColor));
-        searchInputViewHeight = a.getDimensionPixelSize(R.styleable.SearchView_inputView_height, -10);
+        int historyTextColor = a.getColor(R.styleable.SearchView_historyTextColor, ContextCompat.getColor(context, android.R.color.darker_gray));
+        int searchInputViewHeight = a.getDimensionPixelSize(R.styleable.SearchView_inputView_height, -10);
 
         setHintText(hintText);
         setBackIcon(backIcon);
@@ -295,7 +269,8 @@ public class SearchView extends LinearLayout {
     }
 
     /**
-     * 数值搜索输入框高度
+     * 设置搜索输入框高度
+     *
      * @param height
      */
     public void setSearchInputViewHeight(int height) {

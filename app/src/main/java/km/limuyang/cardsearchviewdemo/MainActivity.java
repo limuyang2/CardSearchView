@@ -16,7 +16,7 @@ import km.lmy.searchview.SearchView;
 
 public class MainActivity extends AppCompatActivity {
 
-    Toolbar activityToolbar;
+    Toolbar    activityToolbar;
     SearchView searchView;
 
     @Override
@@ -24,8 +24,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        activityToolbar=(Toolbar)findViewById(R.id.activity_toolbar);
-        searchView=(SearchView)findViewById(R.id.searchView);
+        activityToolbar = findViewById(R.id.activity_toolbar);
+        searchView = findViewById(R.id.searchView);
 
         activityToolbar.setTitle(this.getTitle());
         activityToolbar.setTitleTextColor(Color.WHITE);
