@@ -27,24 +27,31 @@ allprojects {
 再在dependencies添加:
 ```gradle
 dependencies {
-	compile 'com.github.limuyang2:CardSearchView:1.0.7.0'
+	compile 'com.github.limuyang2:CardSearchView:1.1.0.0'
 }
 ```
 ## 使用
 
 在根布局中添加以下代码：
 ```xml
-xmlns:SearchView="http://schemas.android.com/apk/res-auto"
+xmlns:app="http://schemas.android.com/apk/res-auto"
 ```
 在布局中使用：
 ```xml
-    <km.lmy.searchview.SearchView
+  <km.lmy.searchview.SearchView
         android:id="@+id/searchView"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        SearchView:defaultState="open"
-        SearchView:hintText="input name" />
+        android:layout_margin="4dp"
+        app:cardBackgroundColor="#fff"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="4dp"
+        app:defaultState="open"
+        app:hintText="input name" />
 ```
+### 提示
+**`SearchView`继承于系统控件`CardView`，所以可直接使用`CardView`的属性，例如：  
+设置背景色（app:cardBackgroundColor）、圆角（app:cardCornerRadius）等等**  
 
 ### xml设置属性说明
 
@@ -92,7 +99,7 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 #### 示例参考
 [MainActivity.java](https://github.com/limuyang2/CardSearchView/blob/master/app/src/main/java/km/limuyang/cardsearchviewdemo/MainActivity.java)
 
-### *与ToolBar一起使用不显示？*
+### *与AppBarLayout、ToolBar一起使用不显示？*
 #### 原因
 如下布局所示，当在Toolbar外嵌套AppBarLayout后，会有好看的阴影效果，这是在Android5.0后新加入的Material Design效果，强调布局的层级性。由于AppBarLayout会提高布局的Z轴坐标，产生层级，因此，在ToolBar上的其他控件会因为层级低于AppBarLayout而导致被遮盖。
 ```xml
@@ -115,7 +122,7 @@ xmlns:SearchView="http://schemas.android.com/apk/res-auto"
 #### 解决办法如下
 只需要将SearchView的层级提高到和AppBarLayout一样即可。在SearchView的XML中加入下面一句话即可。
 ```xml
-android:elevation="5dp"
+app:cardElevation="4dp"
 ```
 #### 示例
 ```xml
@@ -136,10 +143,10 @@ android:elevation="5dp"
 </android.support.design.widget.AppBarLayout>
 
 <km.lmy.searchview.SearchView
-     android:elevation="5dp"
+     app:cardElevation="4dp"
      android:id="@+id/searchView"
-     android:layout_width="wrap_content"
-     android:layout_height="wrap_content"/>
+     android:layout_width="match_parent"
+         android:layout_height="wrap_content"/>
 ```
 
 ## License
