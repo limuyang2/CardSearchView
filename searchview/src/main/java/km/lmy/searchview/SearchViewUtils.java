@@ -7,20 +7,19 @@ import android.support.v7.widget.CardView;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewAnimationUtils;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 
 /**
  * Created by limuyang on 2017/6/9.
  */
 
-public class SearchViewUtils {
+class SearchViewUtils {
     private static int dip2px(Context context, float dp) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5);
     }
 
-    public static void autoOpenOrClose(final Context context, final CardView search, final EditText editText) {
+    static void autoOpenOrClose(final Context context, final CardView search, final EditText editText) {
         //隐藏
         if (search.getVisibility() == View.VISIBLE) {
             close(context, search, editText);
@@ -29,7 +28,7 @@ public class SearchViewUtils {
         }
     }
 
-    public static void open(final Context context, final CardView search, final EditText editText) {
+    static void open(final Context context, final CardView search, final EditText editText) {
         if (search.getVisibility() == View.INVISIBLE || search.getVisibility() == View.GONE)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Animator animator = ViewAnimationUtils.createCircularReveal(search,
@@ -70,7 +69,7 @@ public class SearchViewUtils {
             }
     }
 
-    public static void close(final Context context, final CardView search, final EditText editText) {
+    static void close(final Context context, final CardView search, final EditText editText) {
         if (search.getVisibility() == View.VISIBLE) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Animator animatorHide = ViewAnimationUtils.createCircularReveal(search,

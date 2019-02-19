@@ -8,7 +8,7 @@ import android.view.inputmethod.InputMethodManager;
  * Created by limuyang on 2017/7/19.
  */
 
-public class KeyboardUtils {
+class KeyboardUtils {
     private KeyboardUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
@@ -24,7 +24,7 @@ public class KeyboardUtils {
      *
      * @param view 视图
      */
-    public static void showSoftInput(final View view, Context context) {
+    static void showSoftInput(final View view, Context context) {
         view.setFocusable(true);
         view.setFocusableInTouchMode(true);
         view.requestFocus();
@@ -38,7 +38,7 @@ public class KeyboardUtils {
      *
      * @param view 视图
      */
-    public static void hideSoftInput(final View view, Context context) {
+    static void hideSoftInput(final View view, Context context) {
         InputMethodManager imm = (InputMethodManager) context.getSystemService(Context.INPUT_METHOD_SERVICE);
         if (imm == null) return;
         imm.hideSoftInputFromWindow(view.getWindowToken(), 0);

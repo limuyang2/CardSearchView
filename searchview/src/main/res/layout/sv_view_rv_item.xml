@@ -1,27 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@drawable/recycler_touch_bg"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="40dp">
+    android:layout_height="40dp"
+    android:background="@drawable/recycler_touch_bg">
 
     <ImageView
-        android:id="@+id/right_icon"
+        android:id="@+id/left_icon"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_centerVertical="true"
         android:padding="10dp"
         android:src="@drawable/ic_history_black_24dp"
         android:tint="@android:color/darker_gray" />
 
     <TextView
         android:id="@+id/tv_history_item"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerVertical="true"
-        android:layout_toRightOf="@+id/right_icon"
+        android:layout_gravity="center_vertical"
         android:paddingLeft="10dp"
+        android:paddingRight="10dp"
         android:text="@string/app_name"
         android:textColor="@android:color/darker_gray"
         android:textSize="16sp" />
-</RelativeLayout>
+</LinearLayout>

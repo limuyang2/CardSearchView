@@ -3,9 +3,9 @@ package km.lmy.searchview;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.annotation.ColorInt;
-import android.support.annotation.ColorRes;
 import android.support.annotation.DrawableRes;
 import android.support.annotation.IntDef;
+import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.LinearLayoutManager;
@@ -23,9 +23,6 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
-import com.chad.library.adapter.base.BaseQuickAdapter;
-
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -37,6 +34,7 @@ import java.util.List;
  * Created by limuyang on 2017/7/29.
  */
 
+@SuppressWarnings("JavaDoc")
 public class SearchView extends LinearLayout {
     public static final int CLOSE = 0;
     public static final int OPEN  = 1;
@@ -93,7 +91,7 @@ public class SearchView extends LinearLayout {
      * @param context
      */
     private void findView(Context context) {
-        View mView = View.inflate(context, R.layout.search_view, this);
+        View mView = View.inflate(context, R.layout.sv_search_view, this);
         ivSearchBack = mView.findViewById(R.id.iv_search_back);
         etSearch = mView.findViewById(R.id.et_search);
         clearSearch = mView.findViewById(R.id.clearSearch);
@@ -130,11 +128,11 @@ public class SearchView extends LinearLayout {
         linearLayoutManager.setOrientation(OrientationHelper.VERTICAL);
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+        adapter.setOnItemClickListener(new SearchRecyclerViewAdapter.OnItemClickListener() {
             @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+            public void onItemClick(SearchRecyclerViewAdapter adapter, View view, int position) {
                 if (onHistoryItemClickListener != null)
-                    onHistoryItemClickListener.onClick(adapter.getData().get(position).toString(), position);
+                    onHistoryItemClickListener.onClick(adapter.getData().get(position), position);
             }
         });
 
@@ -247,7 +245,7 @@ public class SearchView extends LinearLayout {
      *
      * @param text
      */
-    public void setSearchEditText(String text) {
+    public void setSearchEditText(@NonNull String text) {
         etSearch.setText(text);
         etSearch.setSelection(text.length());
     }
@@ -352,7 +350,7 @@ public class SearchView extends LinearLayout {
      * @param historyStr
      */
     public void addOneHistory(String historyStr) {
-        adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
+//        adapter.openLoadAnimation(BaseQuickAdapter.SLIDEIN_RIGHT);
         adapter.addData(historyStr);
         switchCleanHistoryDisplay();
     }
