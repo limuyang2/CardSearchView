@@ -10,8 +10,8 @@
 ![](https://github.com/limuyang2/CardSearchView/blob/master/appPreview/1.png)
 ![](https://github.com/limuyang2/CardSearchView/blob/master/appPreview/GIF.gif)
 
-##版本更新说明
-![版本更新说明](https://github.com/limuyang2/CardSearchView/releases)
+## 版本更新说明
+[版本更新说明](https://github.com/limuyang2/CardSearchView/releases)
 
 ## 获取
 先在 build.gradle 的 repositories 添加:
