@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -35,7 +36,7 @@ import java.util.List;
  */
 
 @SuppressWarnings("JavaDoc")
-public class SearchView extends LinearLayout {
+public class SearchView extends CardView {
     public static final int CLOSE = 0;
     public static final int OPEN  = 1;
 
@@ -57,7 +58,7 @@ public class SearchView extends LinearLayout {
     private EditText                  etSearch;
     private ImageView                 clearSearch;
     private RecyclerView              recyclerView;
-    private CardView                  cardViewSearch;
+//    private CardView                  cardViewSearch;
     private TextView                  cleanHistory;
     private LinearLayout              searchLinearLayout;
     private SearchRecyclerViewAdapter adapter;
@@ -84,6 +85,8 @@ public class SearchView extends LinearLayout {
         findView(context);
         initView(context);
         getCustomStyle(attrs);
+
+        SearchViewUtils.dip2px(context,5);
     }
 
     /***
@@ -96,7 +99,7 @@ public class SearchView extends LinearLayout {
         etSearch = mView.findViewById(R.id.et_search);
         clearSearch = mView.findViewById(R.id.clearSearch);
         recyclerView = mView.findViewById(R.id.recyclerView);
-        cardViewSearch = mView.findViewById(R.id.cardView_search);
+//        cardViewSearch = mView.findViewById(R.id.cardView_search);
         cleanHistory = mView.findViewById(R.id.clearHistory);
         searchLinearLayout = mView.findViewById(R.id.search_linearLayout);
     }
@@ -199,7 +202,6 @@ public class SearchView extends LinearLayout {
 
     /**
      * 初始化自定义属性
-     *
      */
     public void getCustomStyle(AttributeSet attrs) {
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.SearchView);
@@ -210,7 +212,7 @@ public class SearchView extends LinearLayout {
         cleanIcon = a.getResourceId(R.styleable.SearchView_oneKeyCleanIcon, cleanIcon);
         historyIcon = a.getResourceId(R.styleable.SearchView_historyIcon, historyIcon);
         int historyTextColor = a.getColor(R.styleable.SearchView_historyTextColor, ContextCompat.getColor(context, android.R.color.darker_gray));
-        int searchInputViewHeight = a.getDimensionPixelSize(R.styleable.SearchView_inputView_height, -10);
+        int searchInputViewHeight = a.getDimensionPixelSize(R.styleable.SearchView_inputView_height, -1);
 
         setHintText(hintText);
         setBackIcon(backIcon);
@@ -218,7 +220,7 @@ public class SearchView extends LinearLayout {
         setOneKeyCleanIcon(cleanIcon);
         setHistoryIcon(historyIcon);
         setHistoryTextColor(historyTextColor);
-        if (searchInputViewHeight != -10) setSearchInputViewHeight(searchInputViewHeight);
+        if (searchInputViewHeight != -1) setSearchInputViewHeight(searchInputViewHeight);
 
         a.recycle();
     }
@@ -309,7 +311,7 @@ public class SearchView extends LinearLayout {
      * 显示搜索框
      */
     public void open() {
-        SearchViewUtils.open(context, cardViewSearch, etSearch);
+        SearchViewUtils.open(context, this, etSearch);
         switchCleanHistoryDisplay();
         switchOneKeyCleanIconDisplay("");
     }
@@ -318,14 +320,14 @@ public class SearchView extends LinearLayout {
      * 关闭搜索框
      */
     public void close() {
-        SearchViewUtils.close(context, cardViewSearch, etSearch);
+        SearchViewUtils.close(context, this, etSearch);
     }
 
     /***
      * 打开或关闭搜索框
      */
     public void autoOpenOrClose() {
-        SearchViewUtils.autoOpenOrClose(context, cardViewSearch, etSearch);
+        SearchViewUtils.autoOpenOrClose(context, this, etSearch);
     }
 
     /***
@@ -335,10 +337,10 @@ public class SearchView extends LinearLayout {
     public void defaultState(@State int state) {
         switch (state) {
             case CLOSE:
-                cardViewSearch.setVisibility(INVISIBLE);
+                this.setVisibility(INVISIBLE);
                 break;
             case OPEN:
-                cardViewSearch.setVisibility(VISIBLE);
+                this.setVisibility(VISIBLE);
                 break;
         }
         switchCleanHistoryDisplay();
@@ -379,7 +381,7 @@ public class SearchView extends LinearLayout {
      * @return
      */
     public boolean isOpen() {
-        return cardViewSearch.getVisibility() == VISIBLE;
+        return this.getVisibility() == VISIBLE;
     }
 
     /***

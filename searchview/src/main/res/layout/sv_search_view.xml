@@ -1,88 +1,75 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<?xml version="1.0" encoding="utf-8"?><!--<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"--><!--xmlns:app="http://schemas.android.com/apk/res-auto"--><!--xmlns:tools="http://schemas.android.com/tools"--><!--android:id="@+id/cardView_search"--><!--android:layout_width="match_parent"--><!--android:layout_height="wrap_content"--><!--android:layout_margin="4dp"--><!--android:visibility="visible"--><!--app:cardBackgroundColor="@android:color/white"--><!--app:cardCornerRadius="2dp">-->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView_search"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="4dp"
-    android:visibility="visible"
-    app:cardBackgroundColor="@android:color/white"
-    app:cardCornerRadius="2dp">
+    android:orientation="vertical">
 
-    <RelativeLayout
+    <LinearLayout
+        android:id="@+id/search_linearLayout"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="48dp"
+        android:orientation="horizontal">
 
-        <LinearLayout
-            android:id="@+id/search_linearLayout"
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:id="@+id/iv_search_back"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:paddingLeft="12dp"
-                android:paddingTop="5dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="5dp"
-                android:src="@drawable/ic_arrow_back_black_24dp" />
-
-            <EditText
-                android:id="@+id/et_search"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#fff"
-                android:gravity="center_vertical"
-                android:hint="@string/enter_content"
-                android:imeOptions="actionSearch"
-                android:inputType="textCapWords"
-                android:paddingLeft="10dp"
-                android:paddingTop="5dp"
-                android:paddingRight="10dp"
-                android:paddingBottom="5dp"
-                android:singleLine="true" />
-
-            <ImageView
-                android:id="@+id/clearSearch"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:layout_gravity="center_vertical"
-                android:background="?android:attr/selectableItemBackground"
-                android:clickable="true"
-                android:paddingLeft="12dp"
-                android:paddingTop="5dp"
-                android:paddingRight="12dp"
-                android:paddingBottom="5dp"
-                android:src="@drawable/ic_clean_input" />
-        </LinearLayout>
-
-        <TextView
-            android:id="@+id/clearHistory"
+        <ImageView
+            android:id="@+id/iv_search_back"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/search_linearLayout"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginRight="10dp"
-            android:text="@string/clear_history"
-            android:textColor="@android:color/darker_gray"
-            android:textSize="13sp" />
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingLeft="12dp"
+            android:paddingTop="5dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="5dp"
+            android:src="@drawable/ic_arrow_back_black_24dp" />
 
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/clearHistory"
-            android:divider="@android:color/white"
-            tools:listitem="@layout/sv_view_rv_item" />
+        <EditText
+            android:id="@+id/et_search"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="@android:color/transparent"
+            android:gravity="center_vertical"
+            android:hint="@string/enter_content"
+            android:imeOptions="actionSearch"
+            android:inputType="textCapWords"
+            android:paddingLeft="10dp"
+            android:paddingTop="5dp"
+            android:paddingRight="10dp"
+            android:paddingBottom="5dp"
+            android:singleLine="true" />
+
+        <ImageView
+            android:id="@+id/clearSearch"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            android:background="?android:attr/selectableItemBackground"
+            android:clickable="true"
+            android:paddingLeft="12dp"
+            android:paddingTop="5dp"
+            android:paddingRight="12dp"
+            android:paddingBottom="5dp"
+            android:src="@drawable/ic_clean_input" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/clearHistory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginRight="10dp"
+        android:text="@string/clear_history"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="13sp" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:listitem="@layout/sv_view_rv_item" />
 
 
-    </RelativeLayout>
-</android.support.v7.widget.CardView>
+</LinearLayout>

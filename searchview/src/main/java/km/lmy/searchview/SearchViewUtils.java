@@ -13,8 +13,8 @@ import android.widget.EditText;
  * Created by limuyang on 2017/6/9.
  */
 
-class SearchViewUtils {
-    private static int dip2px(Context context, float dp) {
+final class SearchViewUtils {
+    static int dip2px(Context context, float dp) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5);
     }
@@ -32,8 +32,8 @@ class SearchViewUtils {
         if (search.getVisibility() == View.INVISIBLE || search.getVisibility() == View.GONE)
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Animator animator = ViewAnimationUtils.createCircularReveal(search,
-                        search.getWidth() - dip2px(context, 23),
-                        dip2px(context, 23),
+                        search.getWidth() - dip2px(context, 25),
+                        dip2px(context, 25),
                         0,
                         (float) Math.hypot(search.getWidth(), search.getHeight()));
                 animator.addListener(new Animator.AnimatorListener() {
@@ -73,8 +73,8 @@ class SearchViewUtils {
         if (search.getVisibility() == View.VISIBLE) {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                 Animator animatorHide = ViewAnimationUtils.createCircularReveal(search,
-                        search.getWidth() - dip2px(context, 23),
-                        dip2px(context, 23),
+                        search.getWidth() - dip2px(context, 25),
+                        dip2px(context, 25),
                         //确定元的半径（算长宽的斜边长，这样半径不会太短也不会很长效果比较舒服）
                         (float) Math.hypot(search.getWidth(), search.getHeight()),
                         0);
