@@ -57,13 +57,13 @@ xmlns:app="http://schemas.android.com/apk/res-auto"
 
 | xml属性                       | 类型        | 说明                                       |
 | --------------------------- | --------- | ---------------------------------------- |
-| SearchView:hintText         | String    | 输入框提示文本                                  |
-| SearchView:backIcon         | Drawable  | 返回按钮图标                                   |
-| SearchView:oneKeyCleanIcon  | Drawable  | 一键清除图标                                   |
-| SearchView:historyIcon      | Drawable  | 历史纪录左侧图标                                 |
-| SearchView:defaultState     | enum      | 控件初始状态是否处于打开状态（默认“close”），值：“open”、“close” |
-| SearchView:historyTextColor | Color Int | 历史纪录文字颜色                                 |
-| SearchView:inputView_height | Int（dp） | 搜索输入框的高度                               |
+| app:hintText         | String    | 输入框提示文本                                  |
+| app:backIcon         | Drawable  | 返回按钮图标                                   |
+| app:oneKeyCleanIcon  | Drawable  | 一键清除图标                                   |
+| app:historyIcon      | Drawable  | 历史纪录左侧图标                                 |
+| app:defaultState     | enum      | 控件初始状态是否处于打开状态（默认“close”），值：“open”、“close” |
+| app:historyTextColor | Color Int | 历史纪录文字颜色                                 |
+| app:inputView_height | Int（dp） | 搜索输入框的高度                               |
 
 ### Java方法设置属性说明
 | 属性方法                     | 传入数据类型  | 说明                                       |
