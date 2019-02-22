@@ -17,11 +17,11 @@ import android.text.TextWatcher;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.lang.annotation.Documented;
@@ -274,7 +274,7 @@ public class SearchView extends CardView {
      * @param height
      */
     public void setSearchInputViewHeight(int height) {
-        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) searchLinearLayout.getLayoutParams();
+        ViewGroup.LayoutParams params = searchLinearLayout.getLayoutParams();
         params.height = height;
         searchLinearLayout.setLayoutParams(params);
     }
